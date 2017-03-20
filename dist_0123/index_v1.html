@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<script type="text/javascript">
+    var startTime = new Date().valueOf();
+</script>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>业主圈</title>
+		<meta name="keywords" content="业主圈、业主讨论、业主沟通">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<!--分享使用-->
+		<meta itemprop="name" content="业主圈" />
+		<meta itemprop="description" name="description" content="业主圈" />
+		<meta itemprop="image" content="img_url" />
+		<meta name="format-detection" content="telephone=no" />               
+		<link rel="dns-prefetch" href="//hz.huizhuang.com"> 
+		<!-- build:css -->
+        <link rel="stylesheet" type="text/css" href="http://hzimg.huizhuang.com/hzone_v2/global.css">
+        <link rel="stylesheet" href="http://hzimg.huizhuang.com/hzone_v2/swiper.3.1.7.min.css"/>
+		<link rel="stylesheet" type="text/css" href="http://hzimg.huizhuang.com/hzone_v2/index.css" />
+        <link rel="stylesheet" type="text/css" href="http://hzimg.huizhuang.com/hzone_v2/mask.css" />
+
+		<!-- endbuild -->
+        <!---插件JS文件不编译,直接引用-->
+        <script src="http://imgcache.huizhuang.com/lib/jquery-2.1.0.min.js"></script>
+        <script src="http://hzimg.huizhuang.com/lib/vue.min.js"></script>
+        <script src="http://hzimg.huizhuang.com/hzone_v2/lib/swiper.3.1.7.jquery.min.js"></script>
+        <script src="lib/jquery.flexslider-min.js"></script>
+        <script src="lib/dropload.min.js"></script>
+        <!---插件JS引用结束--注意所有的插件最终地址为hzimg.huizhuang.com>-->
+        <!-- build:common -->
+        <script src="utils/config.js"></script>
+		<script src="utils/common.js"></script>
+		<script src="utils/utils.js"></script>
+		<!-- endbuild -->
+        <style>
+            [v-cloak] {
+                display: none;
+            }
+        </style>
+	</head>
+	<body class="index">
+			<!-- 导航 开始-->
+			<nav>
+				<ul>
+					<li style="display: none;">
+						<a href="people.html">
+							<span class="ico-people"></span>
+							<p>人民惠装</p>
+						</a>
+					</li>
+					<li>
+							<span class="ico-beautiful" data-url="beautiful.html" data-pointid="20005611"></span>
+                            <p>装修美图</p>
+					</li>
+					<li>
+							<span class="ico-diary" data-url="diary.html" data-pointid="20005605"></span>
+							<p>装修日记</p>
+					</li>
+					<li>
+							<span class="ico-reputation" data-url="reputation.html" data-pointid="20005606"></span>
+							<p>业主口碑</p>
+					</li>
+                    <li>
+                            <span class="ico-reputation" data-url="discuss.html" data-pointid="20005604"></span>
+                            <p>装修讨论</p>
+                    </li>
+				</ul>
+			</nav>
+			<!-- 导航结束 -->
+			<!-- 广告 -->
+            <div class="adver" id="js_adver">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide import" >
+                            <a href="people.html" title="业主案例" class="js_nativejump"><img src="http://ued.huizhuang.com/dep/template/hzone_v2/img/add-1.jpg" alt="业主案例" /></a>
+                        </div>
+                        <div class="swiper-slide import" >
+                            <a href="collection.html" title="装修宝典" class="js_nativejump"><img src="http://ued.huizhuang.com/dep/template/hzone_v2/img/add-2.jpg" alt="装修宝典" /></a>
+                        </div>
+                        <div class="swiper-slide import" >
+                            <a href="pit.html" title="防坑大全" class="js_nativejump"><img src="http://ued.huizhuang.com/dep/template/hzone_v2/img/add-3.jpg" alt="防坑大全" /></a>
+                        </div>
+                        <div class="swiper-slide import" v-for="todo in todos" data-pointid="{{todo.id}}" v-cloak>
+                            <a ><img src="{{todo.info}}" alt="" title="{{todo.ad_name}}" data-pointid="{{todo.id}}" class="js_advjump" data-url="{{todo.url}}"/></a>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+			<!-- 装修美图 开始 -->
+			<section class="pic-list" id="js_pic_list">
+				<h2><span class="ico-xing"></span>精选美图</h2>
+				<ul>
+                	<li v-for="todo in todos" id="{{todo.id}}" data-pointid="3" onclick="" v-cloak>
+						<div class="pic" style="background-image:url({{todo.thumb_sketch}});"></div>
+						<h3>{{todo.name}}</h3>
+					</li>
+				</ul>
+			</section>
+			<!-- 装修美图 结束 -->
+			
+			<!--幻灯片DOM-->
+            <div class="photos-detail" style="display:none;">
+                <div class="slider-wrap">    
+                    <div class="top">
+                        <div class="left" id="js_slider_back" data-pointid="20005615"><i class="left-img"></i></div>
+                        <div class="right">
+                            <span class="right-sp1">1/</span>
+                            <span class="right-sp2">3</span>
+                        </div>
+                    </div>
+                    <div class="foot"></div>
+                </div>
+                
+                <!--点赞 收藏 分享-->
+                <div class="pic-op">
+                     <ul>
+                         <li><i class="tupian zan" id="js_Praise" data-pointid="20005616"></i></li>
+                         <li><i class="tupian fenxiang" id="js_share" data-pointid="20005617"></i></li>
+                     </ul>
+                </div>
+              <div class="mod-share" style="display:none;">
+                <div class="wrap-share">
+                <p>分享到</p>
+                <ul>
+                    <li id="js_shareWxFriends">
+                        <i class="icon img-one"></i>
+                        <span>微信好友</span>
+                    </li>
+                    <li id="js_shareWXSocials">
+                        <i class="icon img-two"></i>
+                        <span>微信朋友圈</span>
+                    </li>
+                    <li id="js_sharSina">
+                        <i class="icon img-three"></i>
+                        <span>新浪微博</span>
+                    </li>
+                </ul>
+                  </div>
+			</div>
+          </div>
+        
+    <div class="mask" id="mask" style="display:none;">
+        <div class="bg">
+            <div class="center clearfix">
+                <input type="text" placeholder="新主人~人家还不知道你的名字呢！" />
+                <i class="nv chicknv"></i>
+                <i class="nan"></i>
+                <a class="next"></a>
+            </div>
+        </div>
+        <div class="bg-next" style="display: none">
+            <div class="center">
+                <i class="words">
+                    <span class="sp-word"></span><i>你喜欢几居室呢？</i>
+                </i>
+                <div class="swiper-container distance">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide" v-for="room in labelDatas[0].room" v-cloak>
+                            <i class="mask-img" data-name="{{room.name}}" data-value="{{room.value}}" style="background-image:url({{room.img}});background-size:77px;background-color:rgba(255,0,0,0.3);"></i> 
+                        </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+                <a class="next"></a>
+            </div>
+        </div>
+        <div class="bg-thrid" style="display: none">
+            <div class="center">
+                <i class="words">
+                    <span class="sp-word"></span><i>你喜欢的风格是什么呢？</i>
+                </i>
+                <div class="swiper-container distance">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide" v-for="data in labelDatas[0].style" v-cloak>
+                            <i class="mask-img" data-name="{{data.name}}" data-value="{{data.value}}" style="background-image:url({{data.img}});background-size:77px;background-color:rgba(255,0,0,0.3);"></i>
+                        </div> 
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+                <a class="end-next end"></a>
+            </div>
+        </div>
+    </div>
+	</body>
+</html>
+<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript">
+    var endTime = new Date().valueOf();
+</script>
+<script type="text/javascript" src="utils/monitor.native.js?&pageid=200056"></script>
+<script>
+    YZQ_MONITOR.initMonitor(startTime,endTime);
+</script>

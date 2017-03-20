@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<script type="text/javascript">
+	var startTime = new Date().valueOf();
+</script>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>业主圈-装修美图</title>
+		<meta name="keywords" content="业主圈、业主讨论、业主沟通">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<!--分享使用-->
+		<meta itemprop="name" content="业主圈" />
+		<meta itemprop="description" name="description" content="业主圈" />
+		<meta itemprop="image" content="img_url" />
+		<meta name="format-detection" content="telephone=no" />
+		<link rel="dns-prefetch" href="//hz.huizhuang.com">
+		<!--正式环境
+		<link rel="stylesheet" type="text/css" href="http://hzimg.huizhuang.com/hzone_v2/global.css">
+		<link rel="stylesheet" type="text/css" href="http://hzimg.huizhuang.com/hzone_v2/beautiful.css" />
+        <link rel="stylesheet" href="http://hzimg.huizhuang.com/m/style/dropload.min.css?max-age=2592000000">
+        -->
+		<!--开发环境 -->
+<!---->
+        <link rel="stylesheet" type="text/css" href="http://hzimg.huizhuang.com/hzone_v2/global.css">
+		<link rel="stylesheet" type="text/css" href="http://hzimg.huizhuang.com/hzone_v2/beautiful.css" />
+        <!--<link rel="stylesheet" href="http://hzimg.huizhuang.com/m/style/dropload.min.css?max-age=2592000000">-->
+        <link rel="stylesheet" href="http://ued.huizhuang.com/dep/template/hzone_v2/shadowe.css"/>
+        <link rel="stylesheet" type="text/css" href="http://hzimg.huizhuang.com/hzone_v2/swiper.3.1.7.min.css" />
+		<script src="http://hzimg.huizhuang.com/lib/jquery-2.1.0.min.js"></script>
+         <script src="http://hzimg.huizhuang.com/lib/swiper.3.1.7.jquery.min.js"></script>
+        <script src="lib/jquery.flexslider-min.js"></script>
+        <script src="lib/dropload.min.js"></script>
+        <script src="config.js"></script>
+        <script src="./utils/common.js"></script>
+        <script src="./utils/config.js"></script>
+        <script src="./utils/utils.js"></script>
+        <!--图片插件-->
+        <link rel="stylesheet" href="lib/photoswipe/photoswipe.css" />
+        <link rel="stylesheet" href="lib/photoswipe/default-skin.css"/>
+        <script src="lib/photoswipe/photoswipe.min.js"></script>
+        <script src="lib/photoswipe/photoswipe-ui-default.min.js"></script>
+        <style>
+            [v-cloak] {
+              display: none;
+            }
+        </style>
+	</head>
+
+	<body class="beautiful">
+		<div class="drop updown">
+			<ul id="typeList">
+				<li><b data-pointid="20007302" data-type="1" data-ul="type_List" id="_type" data-valueid="">风格</b><i class="icon-under"></i><span class="line"></span></li>
+				<li><b data-pointid="20007304" data-type="2" data-ul="space_List" id="_space" data-valueid="">空间</b><i class="icon-under"></i><span class="line"></span></li>
+				<li><b data-pointid="20007305" data-type="3" data-ul="other_List" id="_other" data-valueid="">局部</b><i class="icon-under"></i><span class="line"></span></li>
+				<li><b data-pointid="20007303" data-type="4" data-ul="room_List" id="_room" data-valueid="">户型</b><i class="icon-under"></i><span class="line"></span></li>
+			</ul>
+		</div>
+		<!-- 筛选下拉列表 -->
+		<div class="screen">
+			<!--显示师增加类名 show-->
+			<div class="c-gray">
+				<ul class="clearfix" id="type_List" data-rel="_type">
+					<li class="current" data-chooseid=""><span>不限</span></li>
+					<li data-chooseid="{{data.value}}" class="type_List"  v-for="data in datas" v-cloak><span v-text="data.name"></span></li>
+				</ul>
+                <ul class="clearfix" id="space_List" data-rel="_space">
+                    <li class="current" data-chooseid=""><span>不限</span></li>
+                    <li data-chooseid="{{data.value}}" class="space_List"  v-for="data in datas" v-cloak><span v-text="data.name"></span></li>
+                </ul>
+                <ul class="clearfix" id="other_List" data-rel="_other">
+                    <li class="current" data-chooseid=""><span>不限</span></li>
+                    <li data-chooseid="{{data.value}}" class="other_List"  v-for="data in datas" v-cloak><span v-text="data.name"></span></li>
+                </ul>
+                <ul class="clearfix" id="room_List" data-rel="_room">
+                    <li class="current" data-chooseid=""><span>不限</span></li>
+                    <li data-chooseid="{{data.value}}" class="room_List"  v-for="data in datas" v-cloak><span v-text="data.name"></span></li>
+                </ul>
+			</div>
+		</div>
+		<div class="pic-list">
+			<ul>
+				<li class="js_gallery" v-for="data in datas" v-cloak onclick="">
+					<div class="pic" data-original="{{data.img_url}}" data-pointid="20007306" style="background-image:url({{data.img_url}}
+);" data-album_id="{{data.album_id}}"></div>
+					<h3>{{data.name}}</h3>
+					<p>{{data.digest}}</p>
+				</li>
+				
+			</ul>
+
+
+
+		</div>
+        <!--幻灯片DOM-->
+            <div class="photos-detail" style="display:none;">
+                <div class="slider-wrap">    
+                    <div class="top">
+                        <div class="left" id="js_slider_back"><i class="left-img"></i></div>
+                        <div class="right">
+                            <span class="right-sp1">1/</span>
+                            <span class="right-sp2">3</span>
+                        </div>
+                    </div>
+                    <div class="foot"></div>
+                </div>
+                
+
+
+			</div>
+
+    <!--图片详情-->
+
+        <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+            <!-- Background of PhotoSwipe.
+                 It's a separate element as animating opacity is faster than rgba(). -->
+            <div class="pswp__bg"></div>
+            <!-- Slides wrapper with overflow:hidden. -->
+            <div class="pswp__scroll-wrap">
+                <!-- Container that holds slides.
+                    PhotoSwipe keeps only 3 of them in the DOM to save memory.
+                    Don't modify these 3 pswp__item elements, data is added later on. -->
+                <div class="pswp__container">
+                    <div class="pswp__item"></div>
+                    <div class="pswp__item"></div>
+                    <div class="pswp__item"></div>
+                </div>
+                <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+                <div class="pswp__ui pswp__ui--hidden">
+
+                    <div class="pswp__top-bar">
+
+                        <!--  Controls are self-explanatory. Order can be changed. -->
+
+                        <div class="pswp__counter"></div>
+
+                        <button class="pswp__button pswp__button--close" title="Close (Esc)" onclick=""></button>
+
+                        <!--<button class="pswp__button pswp__button--share" title="Share"></button>-->
+
+                        <button class="pswp__button pswp__button_share" title=" fss" id="js_share" data-pointid="20007309" onclick=""></button>
+
+                        <!--<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>-->
+                        <button class="pswp__button js_prise" data-pointid="20007308" id="js_Praise" onclick=""></button>
+                        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                        <a id="js_downImg"  data-pointid="20007311"  onclick="" class="pswp__share--download" target="_blank" download href=""><button class=" pswp_button_one"></button></a>
+                        <!-- element will get class pswp__preloader--active when preloader is running -->
+                        <div class="pswp__preloader">
+                            <div class="pswp__preloader__icn">
+                                <div class="pswp__preloader__cut">
+                                    <div class="pswp__preloader__donut"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                        <div class="pswp__share-tooltip"></div>
+                    </div>
+
+                    <div class="bottom-photo">
+                        <div class="bottom-font"><p>喜欢这套设计？让惠装帮你实现它</p></div>
+                        <div class="bottom-btn"><button class="js_booking" data-pointid="20007388">立即预约</button></div>
+                    </div>
+                    <div class="pswp__caption">
+                        <div class="pswp__caption__center"></div>
+                    </div>
+                </div>
+            </div>
+            <!--点赞 收藏 分享-->
+            <!--<div class="pic-op">-->
+                <!--<ul>-->
+                    <!--<li><i class="tupian zan" data-pointid="20007308" id="js_Praise"></i></li>-->
+                    <!--<li><i class="tupian fenxiang"  data-pointid="20007309"></i></li>-->
+                <!--</ul>-->
+            <!--</div>-->
+            <div class="mod-share" style="display:none;">
+                <div class="wrap-share">
+                    <p>分享到</p>
+                    <ul>
+                        <li>
+                            <i class="icon img-one" id="js_shareWxFriends" data-pointid="20007399"></i>
+                            <span>微信好友</span>
+                        </li>
+                        <li>
+                            <i class="icon img-two" id="js_shareWXSocials" data-pointid="20007398"></i>
+                            <span>微信朋友圈</span>
+                        </li>
+                        <li>
+                            <i class="icon img-three" id="js_sharSina" data-pointid="20007395"></i>
+                            <span>新浪微博</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!--推荐-->
+        <div style="display: none" id="js_recommend">
+             <div class="bg" v-for="data in datas" v-if="$index==0" style="background-image:url({{data.bgimg}}); ">
+               <div class="header-cont">
+                   <p>喜欢这套设计？</p>
+                   <span>让惠装帮你把梦想变为现实</span>
+                   <button class="js_booking" data-pointid="20007388">立即预约</button>
+               </div>
+             </div>
+               <div class="cont-title">
+                    <p><span class="icon-lovexin"></span>你可能还喜欢</p>
+               </div>
+               <div class="cont">
+                   <ul>
+                       <li v-for="data in datas"><button class="js_imgjump" style="display: block" data-album_id="{{data.id}}"><img  src="{{data.thumb_sketch}}" alt=""/></button><p>{{data.name}}</p></li>
+                       <!--<li><button class="js_imgjump" style="display: block" data-album_id="'+imgdata[1].album_id+'"><img  src="'+imgdata[1].img_url+'" alt=""/></button><p>'+imgdata[1].name+'</p></li>-->
+                    </ul>
+               </div>
+        </div>
+	</body>
+
+</html>
+<script type="text/javascript" src="./lib/vue.min.js"></script>
+<script type="text/javascript" src="js/beautiful.js"></script>
+<script type="text/javascript">
+    var endTime = new Date().valueOf();
+</script>
+<script type="text/javascript" src="utils/monitor.native.js?pageid=200073"></script>
+<script>
+    YZQ_MONITOR.initMonitor(startTime,endTime);
+    //返回埋点上报
+    function Back_Point_Click (){
+        var pointid = "20007301";
+        YZQ_MONITOR.BackPointClick(pointid);//埋点上报
+    }
+</script>
+

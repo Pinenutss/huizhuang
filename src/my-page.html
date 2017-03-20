@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<script type="text/javascript">
+    var startTime = new Date().valueOf();
+</script>
+<head>
+    <meta charset="utf-8">
+    <title>业主圈-个人主页</title>
+    <meta name="keywords" content="业主圈、业主讨论、业主沟通">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!--分享使用-->
+    <meta itemprop="name" content="业主圈-个人主页" />
+    <meta itemprop="description" name="description" content="业主圈个人主页" />
+    <meta itemprop="image" content="img_url" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="dns-prefetch" href="//hz.huizhuang.com">
+    <!--DNS预解析-->
+<!--    <link rel="stylesheet" type="text/css" href="http://hzimg.huizhuang.com/hzone_v2/global.css">-->
+    <link rel="stylesheet" type="text/css" href="http://imgcache.dev.huizhuang.com/hzone_v2/dist/global.css">
+    <link rel="stylesheet" type="text/css" href="http://imgcache.dev.huizhuang.com/hzone_v2/dist/my-page.css" />
+<!--    <link rel="stylesheet" type="text/css" href="http://hzimg.huizhuang.com/hzone_v2/my-page.css" />-->
+    <script src="http://hzimg.huizhuang.com/lib/jquery-2.1.0.min.js"></script>
+    <script src="config.rls.js"></script>
+
+    <script src="utils/config.js"></script>
+    <script src="utils/common.js"></script>
+    <script src="utils/utils.js"></script>
+    <style>
+        [v-cloak] { display: none }
+    </style>
+</head>
+
+<body class="my-page" id="myPage">
+<div v-for="userInfoData in userInfoDatas" v-cloak>
+    <div class="user-info" style="background-image:url({{userInfoData.background}});">
+        <a onclick="" data-pointid="20012401" class="link-back"><i class="link-icon"></i></a>
+        <div class="head-wrap">
+            <i class="head-img" style="background-image:url({{userInfoData.avatar}});"></i>
+            {{{userInfoData.userVip}}}
+        </div>
+        <p class="name"><span class="v-name">{{userInfoData.nick_name}}</span>{{{userInfoData.gender}}}</p>
+        <p class="address"><span>{{userInfoData.province}}</span><span v-if="userInfoData.province&&userInfoData.city">|</span><span>{{userInfoData.city}}</span></p>
+    </div>
+</div>
+<div class="tab">
+    <ul>
+        <li id="tiezi" data-pointid="20012402" class="active"><span>帖子</span><i class="tab-icon"></i></li>
+        <li id="riji" data-pointid="20012404"><span>日记</span><i></i></li>
+    </ul>
+</div>
+
+<div class="tiezi">
+    <ul class="clearfix">
+        <li data-pointid="20012403" v-on:click="cardClickHandler(userCardData.id, userCardData.title)" class="clearfix" v-for="userCardData in userCardDatas" v-cloak>
+            <img v-if="userCardData.imgs" v-bind:src="userCardData.imgs.img_url" alt="" />
+            <h3 class="word">{{userCardData.title}}</h3>
+            <!--                请前台限制字数，不超过25个中文字符-->
+            <p class="time">{{userCardData.release_time}}</p>
+        </li>
+    </ul>
+    <div class="cont-empty note" style="display: none;">
+        <i></i>
+        <p>这家伙还没有发表过任何帖子哦~</p>
+    </div>
+</div>
+<div class="riji" style="display: none;">
+    <ul>
+        <li class="riji-center" data-pointid="20012405" v-for="userDiaryData in userDiaryDatas" v-cloak v-on:click="diaryClickHandler(userDiaryData.info.gender, userDiaryData.info.avatar, userDiaryData.info.nick_name, userDiaryData.room_style, userDiaryData.room_type)">
+            <div class="riji-info clearfix">
+                <div class="head-img">
+                    <i style="background-image:url({{userDiaryData.info.avatar}})"></i>
+                    {{{userDiaryData.info.userVip}}}
+                </div>
+                <p class="name">{{userDiaryData.info.nick_name}}{{{userDiaryData.info.gender}}}</p>
+                <p class="time">{{userDiaryData.date}}</p>
+            </div>
+            <div class="riji-cont">
+                <h3>{{userDiaryData.content}}</h3>
+                <ul class="pic-list clearfix">
+                    <li v-for="img in userDiaryData.imgs" style="background-image:url({{img}})" v-cloak></li>
+                </ul>
+                <div class="host-op">
+                    <div class="zan-list">
+                        <i v-for="praise in userDiaryData.praise" v-if="$index < 3" class="head-img" style="background-image:url({{praise.headImg}})" v-cloak></i>
+                        <span><b>{{userDiaryData.praise_num}}</b>赞</span>
+                    </div>
+                    <!--
+                                            <p class="view"><span class="ico-view"></span>{{userDiaryData.view_num}}</p>
+                                            <p class="ping"><span class="ico-ping"></span>{{userDiaryData.comment_num}}</p>
+                    -->
+                </div>
+            </div>
+        </li>
+    </ul>
+    <div class="cont-empty diary" style="display: none">
+        <i></i>
+        <p>这家伙还没有发表过任何日记哦~</p>
+    </div>
+</div>
+</body>
+
+</html>
+
+<script type="text/javascript" src="http://hzimg.huizhuang.com/lib/vue.min.js"></script>
+<script type="text/javascript" src="js/my-page.js"></script>
+<script type="text/javascript">
+    var endTime = new Date().valueOf();
+</script>
+<script type="text/javascript" src="utils/monitor.native.js?pageid=200124"></script>
+<script>
+    YZQ_MONITOR.initMonitor(startTime,endTime);
+    //返回埋点上报
+    function Back_Point_Click (){
+        var pointid = "20012401";
+        YZQ_MONITOR.BackPointClick(pointid);//埋点上报
+    }
+</script>

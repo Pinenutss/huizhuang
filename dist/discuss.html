@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<script type="text/javascript">
+    var startTime = new Date().valueOf();
+</script>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>业主圈-装修讨论</title>
+		<meta name="keywords" content="业主圈、业主讨论、业主沟通">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<!--分享使用-->
+		<meta itemprop="name" content="业主圈" />
+		<meta itemprop="description" name="description" content="业主圈-装修讨论" />
+		<meta itemprop="image" content="img_url" />
+		<meta name="format-detection" content="telephone=no" />               
+		<link rel="dns-prefetch" href="//hz.huizhuang.com"><!--DNS预解析-->
+		
+		<link rel="stylesheet" type="text/css" href="http://ued.huizhuang.com/dep/template/hzone_v2/global.css">
+		<link rel="stylesheet" type="text/css" href="http://ued.huizhuang.com/dep/template/hzone_v2/discuss.css" />
+        <link rel="stylesheet" href="http://hzimg.huizhuang.com/m/style/dropload.min.css?max-age=2592000000">	
+        <!---插件JS文件不编译,直接引用-->		
+        <script src="http://imgcache.huizhuang.com/lib/jquery-2.1.0.min.js"></script>
+        <script src="http://hzimg.huizhuang.com/lib/vue.min.js"></script>
+        <script src="lib/dropload.min.js"></script>
+        <!---插件JS引用结束--注意所有的插件最终地址为hzimg.huizhuang.com>-->
+        <!-- build:common -->
+        <script src="utils/config.js"></script>
+		<script src="utils/common.js"></script>
+		<script src="utils/utils.js"></script>
+		<!-- endbuild -->
+        <style>
+            [v-cloak] { display: none }
+        </style>
+	</head>
+	<body class="discuss" id="discuss">	
+			<ol class="discuss-list">
+				<!--评论DOM-->
+				<li class="nextPage" data-pointid="3" data-urlid="{{data.id}}" v-for="data in datas" v-cloak >
+					<i class="head-img" data-user_id = "{{data.user_id}}" style="background-image:url({{data.head_img}});"></i>
+                    <div class="list-wrap">
+                        <p class="name">{{data.nick_name}}</p>
+                        <p class="content">{{{data.card_type}}}{{data.title}}</p>
+                        <!--<ins class="jing">精</ins><ins class="jian">荐</ins><ins class="re">热</ins><ins class="ding">置顶</ins><ins class="replay-yet">已回复</ins>-->
+                        
+                        <ul class="pic-list clearfix" v-if="data.imgs.length">
+                            <li v-for="img in data.imgs" style="background-image:url({{img.img_url}})" onclick="" v-cloak></li>
+                        </ul>
+                        
+                        <div class="list-info">
+                        	<time>{{data.release_time}}</time>
+                        	<p class="ping"><span class="ico-ping"></span>{{data.view}}</p>
+                        </div>                       
+                    </div>
+				</li>
+				<!--评论DOM end-->
+			</ol>		
+	</body>
+</html>
+<script type="text/javascript" src="js/discuss.js"></script>
+<script type="text/javascript">
+    var endTime = new Date().valueOf();
+</script>
+<script type="text/javascript" src="http://hzimg.huizhuang.com/lib/monitor.native.min.js?appid=200300&pageid=77&apptype=200000&debug=false"></script>

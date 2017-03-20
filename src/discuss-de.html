@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<script type="text/javascript">
+    var startTime = new Date().valueOf();
+</script>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>业主圈-装修讨论</title>
+		<meta name="keywords" content="业主圈、业主讨论、业主沟通">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<!--分享使用-->
+		<meta itemprop="name" content="业主圈" />
+		<meta itemprop="description" name="description" content="业主圈-装修讨论" />
+		<meta itemprop="image" content="img_url" />
+		<meta name="format-detection" content="telephone=no" />               
+		<link rel="dns-prefetch" href="//hz.huizhuang.com"><!--DNS预解析-->
+        <link rel="stylesheet" type="text/css" href="http://imgcache.rls.huizhuang.com/hzone_v2/dist/global.css">
+        <link rel="stylesheet" type="text/css" href="http://imgcache.rls.huizhuang.com/hzone_v2/dist/discuss.css" />
+        <script src="http://imgcache.huizhuang.com/lib/jquery-2.1.0.min.js"></script>
+        <script src="config.rls.js"></script>
+        <script src="http://hzimg.huizhuang.com/lib/jquery.flexslider-min.js"></script>
+        <script src="./utils/common.js"></script>
+        <script src="./utils/config.js"></script>
+        <script src="./utils/utils.js"></script>
+        <style>
+            [v-cloak] { display: none }
+        </style>
+	</head>
+    <body  class="discuss-de">
+    <div class="mod-cont">
+        <!--楼主 开始-->
+        <div class="host"  v-for="data in datas" v-cloak>
+            <div class="host-info">
+                <div class="head-img" onclick=""  data-pointid="20007220" data-user_id="{{data.user_id}}">
+                    <i style="background-image:url({{data.user_head_img}})"></i>
+                    <!--<span class="ico-vsmall">vip</span>-->
+                </div>
+
+
+                <!--<i class="head-img" onclick="" style="background-image:url({{data.user_head_img}});" data-pointid="20007220" data-user_id="{{data.user_id}}"> &lt;!&ndash;头像&ndash;&gt; </i>-->
+
+
+                <p class="author">{{data.user_name}}<span>楼主</span></p>
+                <time>{{data.release_time}}</time>
+                <button class="follow" style="display: none;"><span class="ico-jia"></span>关注</button>
+                <!--<span class="follow-yet"><span class="ico-right"></span>已关注</span>-->
+            </div>
+            <h3>{{data.title}}</h3>
+            <p class="content">{{data.content}}</p>
+            <ul class="pic-list clearfix">
+                <li data-pointid="20007209" v-for="data in data.imgs" v-cloak  v-cloak style="background-image:url({{data.img_url}})" onclick=""></li>
+            </ul>
+            <div class="host-op">
+                <div class="zan-list">
+                    <i class="head-img" v-for="data in data.praises" v-cloak style="background-image:url({{data.praise_user_head}})" data-pointid="20007221"></i>
+                    <span v-if="data.praise>0"><b>{{data.praise}}</b>赞</span>
+                </div>
+                <div class="{{data.ifpraise}}" onclick="" data-msgid="{{data.id}}"  id="js_toprprise" data-pointid="20007203">
+                    <!--<span id="js_priseico" class="{{data.ifpraiseico}}" onclick="" ></span>-->
+                    <!--<span id="js_priseword">{{data.ifpraiseword}}</span>-->
+                    <span></span>
+                    <i id="js_priseword" v-text="data.ifpraiseword"></i>
+                </div>
+            	<span class="jubao-sp" onclick="" data-pointid="20007210">
+					<i class="jubao"><!--yijing-jubao--></i>
+				</span>
+                <!--<div class="dian-zan-yet" style="margin-right:60px;">&lt;!&ndash;style 内敛样式开发请去掉&ndash;&gt;<span class="ico-zan-yet"></span>已赞</div>-->
+            </div>
+        </div>
+        <!--楼主 结束-->
+
+        <!--评论列表 开始-->
+        <div class="comment">
+            <ol class="discuss-list" v-for="data in datalist" v-cloak>
+                <li v-for="reply in data">
+                    <i class="head-img" data-pointid="20007221" data-reply_user_id="{{reply[0].user_id}}" style="background-image:url({{reply[0].user_head_img}});"></i>
+                    <div class="list-wrap">
+                        <p class="name">{{reply[0].user_name}}</p>
+                        <p class="content">{{reply[0].content}}</p>
+                        <div class="list-info">
+                            <time>{{reply[0].add_time}}</time>
+
+                            <!--<div class="{{reply[0].divclass}}">-->
+                                <!--<span class="{{reply[0].icon}} userprise" data-pointid="20007204" data-userprise="{{reply[0].id}}" onclick=""></span>-->
+                                <!--<span class="prise_num">{{reply[0].praise}}</span>-->
+                            <!--</div>-->
+
+                            <div class="{{reply[0].divclass}}" data-pointid="20007204" onclick="" data-userprise="{{reply[0].id}}" >
+                                <span></span>
+                                <i class="prise_num">{{reply[0].praise}}</i>
+                            </div>
+
+                            <div class="ping" onclick="" data-pointid="20007206"   data-victorid="{{reply[0].user_id}}" data-replyid ="{{reply[0].id}}" data-victorname="{{reply[0].user_name}}" data-pointid="6"><span class="ico-ping-hot"></span></div>
+                            <span class="cont-sp" data-id="{{reply[0].id}}" data-pointid="20007211">
+								<i class="jubao-v1"></i><!--yijing-jubao-v1-->
+							</span>
+                        </div>
+                        <div v-if="reply.length>1" class="replay">
+                            <span class="ico-jian"></span>
+                            <ul>
+                                <!--<li><b>高升明</b><i class="mark-lou">楼</i><span>：工长怎么样啊？谁能告诉我一下啊，谢谢哈</span></li>-->
+                                <!--<li><b>王大锤</b>回复<b>高升明</b><i class="ico-lou"></i><span>：工长家有喜事，关门三天。</span></li>-->
+                                <li data-pointid="20007205" onclick="" v-cloak v-for=" second in reply" v-if="$index>0" class="js_reply_msg" data-commentid="{{second.id}}" data-victorid="{{second.user_id}}" data-victorname="{{second.user_name}}" data-replyid ="{{reply[0].id}}"><b>{{second.user_name}}</b>回复<b>{{second.reply_name}}</b><i class="ico-lou"></i><span>：{{second.content}}</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+            </ol>
+        </div>
+        <!--评论列表 结束-->
+    </div></div>
+    <!--回复框 开始-->
+    <div class="op-bot">
+        <div class="wrap-input"><input id="js_replay_content" type="text" data-pointid="20007207" placeholder="回复楼主："/></div>
+        <button data-pointid="20007208" id="js_cont_send">发送</button>
+        <button data-pointid="20007208" id="js_cont_sendto_victior" style="display:none;">发送</button>
+    </div>
+
+
+    <!--回复框 结束-->
+
+    <div class="report" style="display: none">
+        <div class="report-cont">
+            <h3>请选择举报原因</h3>
+            <ol>
+                <li v-for="reason in reasons" onclick=""  data-id="{{reason.value}}" data-pointid="{{reason.pointid}}">{{reason.name}}<i class="quan"></i></li>
+                <!--<li>欺诈<i class="quan quan-choose"></i></li>-->
+                <!--<li>谣言<i class="quan"></i></li>-->
+                <!--<li>广告骚扰<i class="quan"></i></li>-->
+                <!--<li>政治敏感<i class="quan"></i></li>-->
+                <!--<li>其他<i class="quan"></i></li>-->
+            </ol>
+            <p>
+                <span id="js_accusation_cancel" onclick="" data-pointid="20007218">取消</span>
+                <span class="active" id="js_accusation_sbumit" onclick="" data-pointid="20007219">提交</span>
+            </p>
+        </div>
+    </div><!--举报框开始-->
+
+    <!--举报框结束-->
+    <!--举报提示开始-->
+    <div class="report-success" style="display: none">
+        <p>举报成功！我们将尽快审核处理</p>
+    </div>
+    <!--举报提示结束-->
+    <div class="photos-detail" style="display:none;">
+        <div class="slider-wrap">
+            <div class="top">
+                <div class="left" id="js_slider_back"><i class="left-img"></i></div>
+                <div class="right">
+                    <span class="right-sp1">1/</span>
+                    <span class="right-sp2">3</span>
+                </div>
+            </div>
+            <div class="foot"></div>
+        </div>
+    </div>
+    </body>
+</html>
+<script type="text/javascript" src="http://hzimg.huizhuang.com/lib/vue.min.js"></script>
+<script type="text/javascript" src="js/discuss-de.js"></script>
+<script type="text/javascript">
+    var endTime = new Date().valueOf();
+</script>
+<script type="text/javascript" src="utils/monitor.native.js?pageid=200072"></script>
+<script>
+    YZQ_MONITOR.initMonitor(startTime,endTime);
+    //返回埋点上报
+    function Back_Point_Click (){
+        var pointid = "20007201";
+        YZQ_MONITOR.BackPointClick(pointid);//埋点上报
+    }
+    //安卓返回键调用
+    function imgClose (){ HZ_APP_JSSDK.showToast('关闭方法按钮');
+        $("html,body").removeClass("all-wrap");
+        $(".photos-detail").css("display", "none");
+        $('.flexslider').remove();
+        HZ_APP_JSSDK.showToast('关闭方法按钮');
+    }
+</script>

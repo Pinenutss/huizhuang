@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>业主圈</title>
+		<meta name="keywords" content="业主圈、业主讨论、业主沟通">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<!--分享使用-->
+		<meta itemprop="name" content="业主圈" />
+		<meta itemprop="description" name="description" content="业主圈" />
+		<meta itemprop="image" content="img_url" />
+		<meta name="format-detection" content="telephone=no" />               
+		<link rel="dns-prefetch" href="//hz.huizhuang.com"> 
+		<!-- build:css -->
+        <link rel="stylesheet" type="text/css" href="http://hzimg.huizhuang.com/hzone_v2/global.css">
+        <link rel="stylesheet" href="http://hzimg.huizhuang.com/hzone_v2/swiper.3.1.7.min.css"/>
+		<link rel="stylesheet" type="text/css" href="http://hzimg.huizhuang.com/hzone_v2/index.css" />
+		<!-- endbuild -->
+        <!---插件JS文件不编译,直接引用-->
+        <script src="http://hzimg.huizhuang.com/lib/jquery-2.1.0.min.js"></script>
+        <script src="http://hzimg.huizhuang.com/lib/vue.min.js"></script>
+        <script src="http://hzimg.huizhuang.com/lib/swiper.3.1.7.jquery.min.js"></script>
+        <script src="lib/jquery.flexslider-min.js"></script>
+        <!---插件JS引用结束--注意所有的插件最终地址为hzimg.huizhuang.com>-->
+        <!-- build:common -->
+        <script src="utils/config.js"></script>
+		<script src="utils/common.js"></script>
+		<script src="utils/utils.js"></script>
+		<!-- endbuild -->
+        
+	</head>
+	<body class="index">
+		
+	</body>
+</html>
+<script type="text/javascript">
+    var endTime = new Date().valueOf();
+
+    //获取APP流水号
+    (function getCounterFromClient(){
+        //alert("初始化第一次自己调用");
+        HZ_APP_JSSDK.showToast("初始化第一次自己调用55");
+        var seqid = HZ_APP_JSSDK.getCounterFromClient();
+        //传给APP
+        function getCounterFromHtml(){
+           // alert("h5方法");
+            HZ_APP_JSSDK.showToast("h5方法55");
+            return seqid;
+        }
+
+    })();
+
+    function getCounterFromClient(){
+       // alert("进入时调用");
+        HZ_APP_JSSDK.showToast("进入时调用55");
+        var seqid = HZ_APP_JSSDK.getCounterFromClient();
+    }
+
+    function getCounterFromHtml(){
+       // alert("离开时调用");
+        HZ_APP_JSSDK.showToast("离开时调用55");
+        var strs = 1;
+        strs++;
+        return strs;
+    }
+
+
+    //安卓
+    function setCounterInHtml(){
+        HZ_APP_JSSDK.showToast("安卓低版本 离开时调用55");
+        var num =1;
+        HZ_APP_JSSDK.setCounterInClient(num);
+        HZ_APP_JSSDK.showToast("安卓低版本 离开时调用55");
+
+    }
+
+</script>

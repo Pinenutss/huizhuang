@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<script type="text/javascript">
+    var startTime = new Date().valueOf();
+</script>
+	<head lang="en">
+		<meta charset="utf-8">
+		<title>业主圈-日记列表</title>
+		<meta name="keywords" content="业主圈、业主讨论、业主沟通">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<!--分享使用-->
+		<meta itemprop="name" content="业主圈" />
+		<meta itemprop="description" name="description" content="业主圈" />
+		<meta itemprop="image" content="img_url" />
+		<meta name="format-detection" content="telephone=no" />
+		<link rel="dns-prefetch" href="//hz.huizhuang.com">
+		<!--DNS预解析-->
+		<!--正式环境-->
+		<link rel="stylesheet" type="text/css" href="http://hzimg.huizhuang.com/hzone_v2/global.css">
+		<link rel="stylesheet" type="text/css" href="http://hzimg.huizhuang.com/hzone_v2/diary.css" />
+
+		<!--测试环境
+		<link rel="stylesheet" type="text/css" href="http://ued.huizhuang.com/dep/template/hzone_v2/global.css">
+		<link rel="stylesheet" type="text/css" href="http://ued.huizhuang.com/dep/template/hzone_v2/diary.css" />
+		-->
+		<script src="http://imgcache.huizhuang.com/lib/jquery-2.1.0.min.js"></script>
+        <script src="./utils/common.js"></script>
+        <script src="./utils/config.js"></script>
+        <script src="./utils/utils.js"></script>
+        <style>
+            [v-cloak] { display: none }
+        </style>
+	</head>
+
+	<body class="diary">
+		<div class="drop">
+			<ul>
+				<li id="fengge" data-rel="js_style"><span class="js_target">风格</span><i class="icon icon-under"></i><span class="line"></span></li>
+				<li id="jieduan" data-rel="js_phase"><span class="js_target">阶段</span><i class="icon icon-under"></i><span class="line"></span></li>
+			</ul>
+		</div>
+		<!-- 筛选下拉列表 -->
+		<div class="screen" id="js_style" data-rel="fengge">
+			<div class="c-gray">
+				<ul class="clearfix">
+					<li class="current" data-chooseid=""><span>不限</span></li>
+					<li data-chooseid="{{data.value}}" id="datalist"  v-for="data in datas"><span>{{data.name}}</span></li>
+				</ul>
+			</div>
+		</div>
+        <div class="screen"  id="js_phase" data-rel="jieduan">
+            <div class="c-gray">
+                <ul class="clearfix">
+                    <li class="current" data-chooseid=""><span>不限</span></li>
+                    <li data-chooseid="p7"><span>预约阶段</span></li>
+                    <li data-chooseid="p6"><span>量房阶段</span></li>
+                    <li data-chooseid="p1"><span>开工阶段</span></li>
+                    <li data-chooseid="p2"><span>水电阶段</span></li>
+                    <li data-chooseid="p3"><span>泥木阶段</span></li>
+                    <li data-chooseid="p4"><span>油漆阶段</span></li>
+                    <li data-chooseid="p5"><span>竣工阶段</span></li>
+                </ul>
+            </div>
+        </div>
+		<div class="diary-main">
+			<ul class="list-box" id="js_datalist">
+				<li class="nextPage " data-url="diary-de.html"  v-for="data in datas" v-cloak >
+					<div class="pic" onclick="" data-pointid="20006302" data-user_id="{{data.author.user_id}}" data-headimg="{{data.author.head_img}}" data-gender="{{data.author.gender}}" data-nick_name="{{data.author.nick_name}}" data-style="{{data.style}}" data-type="{{data.type}}" style="background-image:url({{data.imgs[0]}});" data-diaryid="{{data.id}}"><span class="{{data.fenggesp}}" ><i class="{{data.icojiao}}"></i>{{data.style}}</span></div>
+					<div class="author">
+						<i class="head-img" style="background-image:url({{data.author.head_img}})"></i>
+						<p class="name">{{data.author.nick_name}}<i class="{{data.author.gender}}"></i></p>
+
+						<P class="pinglun">{{data.content}}</P>
+						<p class="zan" >
+							<i v-for="prise in data.praise"  style="background-image:url({{prise.headImg}})"></i>
+							<span v-if="data.praise.length!=0" >{{data.praiseCount}}</span>
+						</p>
+						<p class="date">{{data.add_time}}</p>
+					</div>
+				</li>
+			</ul>
+		</div>
+
+	</body>
+
+</html>
+<script type="text/javascript" src="./lib/vue.min.js"></script>
+<script type="text/javascript" src="js/diary.js"></script>
+<script type="text/javascript">
+    var endTime = new Date().valueOf();
+</script>
+<script type="text/javascript" src="utils/monitor.native.js?appid=200300&pageid=200063"></script>
+<script>
+    YZQ_MONITOR.initMonitor(startTime,endTime);
+    //返回埋点上报
+    function Back_Point_Click (){
+        var pointid = "20006301";
+        YZQ_MONITOR.BackPointClick(pointid);//埋点上报
+    }
+</script>
+<!--<script type="text/javascript" src="http://hzimg.huizhuang.com/lib/monitor.native.min.js?appid=200300&pageid=79&apptype=200000&debug=false"></script>-->

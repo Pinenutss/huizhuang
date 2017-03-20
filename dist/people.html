@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<script type="text/javascript">
+    var startTime = new Date().valueOf();
+</script>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>人民惠装</title>
+    <meta name="keywords" content="业主圈、业主讨论、业主沟通">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!--分享使用-->
+    <meta itemprop="name" content="人民惠装" />
+    <meta itemprop="description" name="description" content="人民惠装" />
+    <meta itemprop="image" content="img_url" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="dns-prefetch" href="//hz.huizhuang.com"><!--DNS预解析-->
+    <!--正式环境 -->
+<!--
+    <link rel="stylesheet" type="text/css" href="http://hzimg.huizhuang.com/hzone_v2/global.css">
+    <link rel="stylesheet" type="text/css" href="http://hzimg.huizhuang.com/hzone_v2/people.css" />
+-->
+    
+    <link rel="stylesheet" type="text/css" href="http://hzimg.huizhuang.com/hzone_v2/global.css">
+    <link rel="stylesheet" type="text/css" href="http://hzimg.huizhuang.com/hzone_v2/people.css" />
+    <script src="config.js"></script>
+
+    <!---插件JS文件不编译,直接引用-->		
+    <script src="http://hzimg.huizhuang.com/lib/jquery-2.1.0.min.js"></script>
+    <script src="http://hzimg.huizhuang.com/lib/vue.min.js"></script>
+    <script src="http://hzimg.huizhuang.com/lib/dropload.min.js"></script>
+    <!---插件JS引用结束--注意所有的插件最终地址为hzimg.huizhuang.com>-->
+    <!-- build:common -->
+    <script src="utils/config.js"></script>
+    <script src="utils/common.js"></script>
+    <script src="utils/utils.js"></script>
+    <!-- endbuild -->
+    <style>
+        [v-cloak] { display: none }
+    </style>
+</head>
+
+<body class="people" id="people">
+    <div class="people-cont">
+    <div v-for="topArticle in topArticleData" class="photo next-page" onclick="" data-title="{{topArticle.title}}" data-titleid="{{topArticle.id}}" data-pointid="2" v-cloak><!--查看详情整个可以点击-->
+		<div class="pic" data-pointid="20007503" style="background-image: url({{topArticle.img}});"></div>
+        <i class="label">
+            <span class="label-f color-font">最新</span>
+        </i>      
+    </div>
+    <div class="ask">
+        <!--active为有颜色-->
+        <div class="tab-top clearfix">
+    	<span class="btn-anli active" data-pointid="20007507">更多案例</span>
+    	<span class="btn-dayi" data-pointid="20007506">客服答疑</span>  
+        </div>
+        <!--客服答疑-->
+        <ul class="dayi">
+            <li v-for="questionData in questionDatas" data-userid="{{questionData.user_id}}" class="data-status-{{questionData.status}}" data-id="{{questionData.id}}" v-cloak>
+                <i class="user-img" data-userid="{{questionData.user_id}}" style="background-image: url({{questionData.userAvatar}});"></i>
+                <p class="color-answer f-15">{{questionData.userName}} 提问:</p>
+                <p class="color-time">{{questionData.add_time}}</p>
+                <p class="right">{{questionData.status == '0' ? '等待回复' : ''}}</p>
+                <P class="wenti">{{questionData.content}}</P>
+                <div class="answer">
+                    <div class="reply" data-customId="{{questionData.customer_id}}">
+                        <span class="ico-jiao"></span>
+                        <i class="answer-img" style="background-image: url(http://hzimg.huizhuang.com/hzone_v2/img/head-users.png);"></i>
+                        <p>
+                            <span class="color-neirong">惠装：</span>
+                            <span class="color-answer">{{questionData.hfContent}}</span>
+                        </p>
+                        <p><span class="color-time">{{questionData.hftime}}</span></p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <!--更多案例-->
+        <ul class="anli">
+            <li v-for="caseData in caseDatas" data-title="{{caseData.title}}" data-pointid="20007508" data-titleid="{{caseData.id}}" v-cloak>
+                <img src="{{caseData.img}}" alt="{{caseData.title}}"/>
+            </li>
+        </ul>
+    
+        </div>
+    </div>    
+    <div class="op-bot">
+        <div class="wrap-input">
+            <input type="text" onClick="" data-pointid="20007504" placeholder="我要提问："/>
+        </div>
+        <button data-pointid="20007505">发送</button>
+        <div class="quiz" onClick="" style="display: none"></div>
+        <!--未登录时，点击登录-->
+    </div>
+</body>
+</html>
+<script type="text/javascript" src="js/people.js"></script>
+<script type="text/javascript">
+    var endTime = new Date().valueOf();
+</script>
+<script type="text/javascript" src="utils/monitor.native.js?pageid=200075"></script>
+<script>
+    YZQ_MONITOR.initMonitor(startTime,endTime);
+    //返回埋点上报
+    function Back_Point_Click (){
+        var pointid = "20007502";
+        YZQ_MONITOR.BackPointClick(pointid);//埋点上报
+    }
+</script>

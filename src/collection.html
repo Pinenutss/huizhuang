@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<script type="text/javascript">
+    var startTime = new Date().valueOf();
+</script>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>装修宝典</title>
+		<meta name="keywords" content="业主圈、业主讨论、业主沟通">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<!--分享使用-->
+		<meta itemprop="name" content="装修宝典" />
+		<meta itemprop="description" name="description" content="装修宝典" />
+		<meta itemprop="image" content="img_url" />
+		<meta name="format-detection" content="telephone=no" />
+		<link rel="dns-prefetch" href="//hz.huizhuang.com">
+		<!--DNS预解析-->
+		<!--正式环境 -->
+    	<link rel="stylesheet" type="text/css" href="http://imgcache.dev.huizhuang.com/hzone_v2/dist/global.css">
+<!--    	<link rel="stylesheet" type="text/css" href="http://hzimg.huizhuang.com/hzone_v2/collection.css" />-->
+        <link rel="stylesheet" type="text/css" href="http://imgcache.dev.huizhuang.com/hzone_v2/dist/collection.css" />
+        <!--开发环境 -->   
+<!--
+        <link rel="stylesheet" type="text/css" href="http://ued.huizhuang.com/dep/template/hzone_v2/global.css">
+        <link rel="stylesheet" type="text/css" href="http://ued.huizhuang.com/dep/template/hzone_v2/collection.css" />
+-->
+        <link rel="stylesheet" type="text/css" href="http://hzimg.huizhuang.com/hzone_v2/swiper.3.1.7.min.css" />
+
+        <script src="http://hzimg.huizhuang.com/lib/jquery-2.1.0.min.js"></script>
+        <script src="http://hzimg.huizhuang.com/lib/swiper.3.1.7.jquery.min.js"></script>
+        <script src="http://hzimg.huizhuang.com/lib/dropload.min.js"></script>
+        <script src="config.rls.js"></script>
+        <script src="./utils/common.js"></script>
+        <script src="./utils/config.js"></script>
+        <script src="./utils/utils.js"></script>
+        <style>
+            [v-cloak] {
+                display: none;
+            }
+        </style>
+	</head>
+
+	<body class="collection">
+		<div class="header">
+			<div class="top-icon swiper-container">
+				<ul class="icon-all swiper-wrapper clearfix"></ul>
+			</div>
+		</div>
+		<div class="neirong" id="collection">
+			<ul class="clearfix">
+				<li data-id="{{data.id}}" onclick="" data-title="{{data.title}}" data-pointid="20007602" v-for="data in datas" v-cloak class="clearfix">
+                    <div class="qingchu">
+                        <div class="prct">
+                            <img src="{{data.img}}" alt="" />
+                        </div>
+                        <div class="wenzi">
+                            <p>{{data.title}}</p>
+                            <p>{{data.abstract}}</p>
+                            <p><i class="you"></i></p>
+                        </div>
+                    </div>					
+				</li>
+			</ul>
+		</div>
+	</body>
+</html>
+<script type="text/javascript" src="http://hzimg.huizhuang.com/lib/vue.min.js"></script>
+<script type="text/javascript" src="js/collection.js"></script>
+<script type="text/javascript">
+    var endTime = new Date().valueOf();
+</script>
+<script type="text/javascript" src="utils/monitor.native.js?pageid=200076"></script>
+<script>
+    YZQ_MONITOR.initMonitor(startTime,endTime);
+    //返回埋点上报
+    function Back_Point_Click (){
+        var pointid = "20007601";
+        YZQ_MONITOR.BackPointClick(pointid);//埋点上报
+    }
+</script>

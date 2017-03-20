@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<script type="text/javascript">
+    var startTime = new Date().valueOf();
+</script>
+	<head lang="en">
+		<meta charset="utf-8">
+		<title>业主圈-日记详情</title>
+		<meta name="keywords" content="业主圈、业主讨论、业主沟通">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<!--分享使用-->
+		<meta itemprop="name" content="业主圈" />
+		<meta itemprop="description" name="description" content="业主圈" />
+		<meta itemprop="image" content="img_url" />
+		<meta name="format-detection" content="telephone=no" />
+		<link rel="dns-prefetch" href="//hz.huizhuang.com">
+		<!--DNS预解析-->
+
+		<!--正式
+		<link rel="stylesheet" type="text/css" href="http://hzimg.huizhuang.com/hzone_v2/global.css">
+		<link rel="stylesheet" type="text/css" href="http://hzimg.huizhuang.com/hzone_v2/diary.css" />
+        环境-->
+		<!--开发环境-->
+		<link rel="stylesheet" type="text/css" href="http://hzimg.huizhuang.com/hzone_v2/global.css">
+		<link rel="stylesheet" type="text/css" href="http://hzimg.huizhuang.com/hzone_v2/diary.css" />
+        <!--<link rel="stylesheet" href="http://hzimg.huizhuang.com/m/style/dropload.min.css?max-age=2592000000">-->
+		<script src="http://hzimg.huizhuang.com/lib/jquery-2.1.0.min.js"></script>
+        <!---插件JS文件不编译,直接引用-->
+        <script src="http://hzimg.huizhuang.com/lib/vue.min.js"></script>
+        <script src="http://hzimg.huizhuang.com/lib/jquery.flexslider-min.js"></script>
+        <script src="config.js"></script>
+        <!---插件JS引用结束--注意所有的插件最终地址为hzimg.huizhuang.com>-->
+        <script src="./utils/common.js"></script>
+        <script src="./utils/config.js"></script>
+        <script src="./utils/utils.js"></script>
+        <style>
+            [v-cloak] { display: none }
+            html {
+                -webkit-user-select:none;
+                user-select:none;
+            }
+        </style>
+	</head>
+
+    <body class="diary-details" id="dairylist">
+    <div class="header-fix">
+        <header>
+            <i class="head-img" style="background-image:url(http://hzimg.huizhuang.com/hzone_v2/img/head-users.png)" data-pointid="20006405"></i>
+            <p class="name"><span></span><i class="xingbie-nv" style="display: none"></i><i class="xingbie-nan" style="display: none"></i></p>
+            <p class="info"><span></span></p>
+            <!--<button class="follow"><b>+</b>关注我</button>-->
+        </header>
+    </div>
+
+    <section v-for="data in datas" v-cloak >
+        <div class="title">
+            <h2>{{data.name}}{{data.count}}</h2>
+            <div class="tubiao"><span class="{{data.id}}"></span><i></i></div>
+        </div>
+        <ol class="diary-list" >
+            <li v-for="step in data.diaryReuput" v-cloak>
+                <div class="top">
+                    <time>{{step.add_time}}</time>
+                    <span></span><i></i>
+                </div>
+                <article>
+                    <p >{{step.content}}</p>
+                    <ul class="pic-list">
+                        <li data-pointid="20006403" onclick="" data-pointid="20006403"  v-for="img in step.img" v-if="$index<9" style="background-image:url({{img}})" v-cloak></li>
+                    </ul>
+
+                    <div class="host-op">
+                        <div class="zan-list" v-for="list in data.dairy" v-if="step.praiseCount>0" v-cloak><i v-for="userimg in step.praise" class="head-img" style="background-image:url({{userimg.headImg}})" v-cloak></i>
+                            <span ><b>{{step.praiseCount}}</b><span>赞</span></span>
+                        </div>
+                        <div  class="{{step.pridiv}}" onclick="" data-pointid="20006404" data-diaryid="{{step.id}}">
+                            <span></span>
+                            <i class="js_priseword">{{step.word}}</i>
+                        </div>
+                    </div>
+                </article>
+            </li>
+        </ol>
+    </section>
+    <div class="photos-detail" style="display:none;">
+        <div class="slider-wrap">
+            <div class="top">
+                <div class="left" id="js_slider_back"><i class="left-img"></i></div>
+                <div class="right">
+                    <span class="right-sp1">1/</span>
+                    <span class="right-sp2">3</span>
+                </div>
+            </div>
+            <div class="foot"></div>
+        </div>
+    </div>
+
+    </body>
+</html>
+<script type="text/javascript" src="js/diary-de.js"></script>
+<script type="text/javascript">
+    var endTime = new Date().valueOf();
+</script>
+<script type="text/javascript" src="utils/monitor.native.js?appid=200300&pageid=200064"></script>
+<script>
+    YZQ_MONITOR.initMonitor(startTime,endTime);
+    //返回埋点上报
+    function Back_Point_Click (){
+        var pointid = "20006401";
+        YZQ_MONITOR.BackPointClick(pointid);//埋点上报
+    }
+</script>
+<!--<script type="text/javascript" src="http://hzimg.huizhuang.com/lib/monitor.native.min.js?appid=200300&pageid=80&apptype=200000&debug=false"></script>-->

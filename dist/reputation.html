@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<script type="text/javascript">
+    var startTime = new Date().valueOf();
+</script>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>业主圈-业主口碑</title>
+    <meta name="keywords" content="业主圈、业主讨论、业主沟通">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!--分享使用-->
+    <meta itemprop="name" content="业主圈" />
+    <meta itemprop="description" name="description" content="业主圈" />
+    <meta itemprop="image" content="img_url" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="dns-prefetch" href="//hz.huizhuang.com"><!--DNS预解析-->
+
+    <!--正式环境-->
+<!--
+    <link rel="stylesheet" type="text/css" href="http://hzimg.huizhuang.com/hzone_v2/global.css">
+    <link rel="stylesheet" type="text/css" href="http://hzimg.huizhuang.com/hzone_v2/reputation.css" />
+-->
+<!--
+    <link rel="stylesheet" type="text/css" href="http://hzimg.huizhuang.com/hzone_v2/global.css">
+    <link rel="stylesheet" type="text/css" href="http://hzimg.huizhuang.com/hzone_v2/reputation.css" />
+-->
+<!--    开发环境-->
+    <link rel="stylesheet" type="text/css" href="http://hzimg.huizhuang.com/hzone_v2/global.css">
+    <link rel="stylesheet" type="text/css" href="http://hzimg.huizhuang.com/hzone_v2/reputation.css" />
+    <script src="config.js"></script>
+    <script src="http://hzimg.huizhuang.com/lib/jquery-2.1.0.min.js"></script>
+    <script src="http://hzimg.huizhuang.com/lib/dropload.min.js"></script>
+    <script src="./utils/common.js"></script>
+    <script src="./utils/config.js"></script>
+    <script src="./utils/utils.js"></script>
+    <style>
+        [v-cloak] { display: none }
+    </style>
+</head>
+<body class="reputation" id="list">
+<ul class="repu-list">
+    <li  v-for="data in datas" v-cloak>
+        <div class="owner-cont" >
+            <div class="head-img">
+                <i onClick="" data-pointid="20006502" data-user_id="{{data.user_id}}" style="background-image:url({{data.user_head_img}});"></i>
+                {{{data.userVip}}}
+            </div>
+            <p class="name">{{data.user_nick_name}}（{{data.user_name}}）{{{data.sex}}}</p>
+            <address>{{data.city}}<b v-if="data.point">{{data.point}}</b>{{data.housing_name}}<b>·</b>{{data.housing_area}}</address>
+            <p class="ping">{{data.content}}</p>
+            <time>{{data.add_time}}</time>
+        </div>
+        <div class="gong-cont" onClick="">
+            <i class="head-img" data-pointid="20006503" data-foremanname="{{data.foreman_name}}" data-foremanid="{{data.foreman_id}}" style="background-image:url({{data.foreman_head_img}});"></i>
+            <p class="name">惠装工长<b>·</b>{{data.foreman_name}}</p>
+            <div class="stage">
+                <span>{{data.stage}}</span>
+                <div class="stars">
+                    <i style="width: {{data.starscore}}%"></i>
+                </div>
+
+            </div>
+            <div class="count">接单{{data.service_num}}</div>
+        </div>
+    </li>
+</ul>
+<!--下单底部条-->
+<div class="bottom-photo">
+    <div class="bottom-font"><p>惠装，比装修公司省40%</p></div>
+    <div class="bottom-btn"><button class="js_booking" data-pointid="20006505">立即预约</button></div>
+</div>
+</body>
+
+</html>
+<script type="text/javascript" src="http://hzimg.huizhuang.com/lib/vue.min.js"></script>
+<script type="text/javascript" src="js/reputation.js"></script>
+<script type="text/javascript">
+    var endTime = new Date().valueOf();
+</script>
+<script type="text/javascript" src="utils/monitor.native.js?appid=200300&pageid=200065"></script>
+<script>
+    YZQ_MONITOR.initMonitor(startTime,endTime);
+    //返回埋点上报
+    function Back_Point_Click (){
+        var pointid = "20006501";
+        YZQ_MONITOR.BackPointClick(pointid);//埋点上报
+    }
+</script>

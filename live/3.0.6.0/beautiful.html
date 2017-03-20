@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<script type="text/javascript">
+	var startTime = new Date().valueOf();
+</script>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>业主圈-装修美图</title>
+		<meta name="keywords" content="业主圈、业主讨论、业主沟通">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<!--分享使用-->
+		<meta itemprop="name" content="业主圈" />
+		<meta itemprop="description" name="description" content="业主圈" />
+		<meta itemprop="image" content="img_url" />
+		<meta name="format-detection" content="telephone=no" />
+		<link rel="dns-prefetch" href="//hz.huizhuang.com">
+		<!--正式环境-->
+		<link rel="stylesheet" type="text/css" href="http://hzimg.huizhuang.com/hzone_v2/global.css">
+		<link rel="stylesheet" type="text/css" href="http://hzimg.huizhuang.com/hzone_v2/beautiful.css" />
+		
+		<!--开发环境 -->
+<!--
+		<link rel="stylesheet" type="text/css" href="http://ued.huizhuang.com/dep/template/hzone_v2/global.css">
+		<link rel="stylesheet" type="text/css" href="http://ued.huizhuang.com/dep/template/hzone_v2/beautiful.css" />
+-->
+        <link rel="stylesheet" type="text/css" href="http://hzimg.huizhuang.com/hzone_v2/swiper.3.1.7.min.css" />
+		<script src="http://hzimg.huizhuang.com/lib/jquery-2.1.0.min.js"></script>
+         <script src="http://imgcache.huizhuang.com/lib/swiper.3.1.7.jquery.min.js"></script>
+        <script src="lib/jquery.flexslider-min.js"></script>
+        <script src="./utils/common.js"></script>
+        <script src="./utils/config.js"></script>
+        <script src="./utils/utils.js"></script>
+	</head>
+
+	<body class="beautiful">
+		<div class="drop">
+			<ul id="typeList">
+				<li><b data-pointid="20007302" data-type="1" data-ul="type_List" id="_type" data-valueid="">风格</b><i class="icon-under"></i><span class="line"></span></li>
+				<li><b data-pointid="20007304" data-type="2" data-ul="space_List" id="_space" data-valueid="">空间</b><i class="icon-under"></i><span class="line"></span></li>
+				<li><b data-pointid="20007305" data-type="3" data-ul="other_List" id="_other" data-valueid="">局部</b><i class="icon-under"></i><span class="line"></span></li>
+				<li><b data-pointid="20007303" data-type="4" data-ul="room_List" id="_room" data-valueid="">户型</b><i class="icon-under"></i><span class="line"></span></li>
+			</ul>
+		</div>
+		<!-- 筛选下拉列表 -->
+		<div class="screen">
+			<!--显示师增加类名 show-->
+			<div class="c-gray">
+				<ul class="clearfix" id="type_List" data-rel="_type">
+					<li class="current" data-chooseid=""><span>不限</span></li>
+					<li data-chooseid="{{data.value}}" class="type_List"  v-for="data in datas" v-cloak><span>{{data.name}}</span></li>
+				</ul>
+                <ul class="clearfix" id="space_List" data-rel="_space">
+                    <li class="current" data-chooseid=""><span>不限</span></li>
+                    <li data-chooseid="{{data.value}}" class="space_List"  v-for="data in datas" v-cloak><span>{{data.name}}</span></li>
+                </ul>
+                <ul class="clearfix" id="other_List" data-rel="_other">
+                    <li class="current" data-chooseid=""><span>不限</span></li>
+                    <li data-chooseid="{{data.value}}" class="other_List"  v-for="data in datas" v-cloak><span>{{data.name}}</span></li>
+                </ul>
+                <ul class="clearfix" id="room_List" data-rel="_room">
+                    <li class="current" data-chooseid=""><span>不限</span></li>
+                    <li data-chooseid="{{data.value}}" class="room_List"  v-for="data in datas" v-cloak><span>{{data.name}}</span></li>
+                </ul>
+			</div>
+		</div>
+		<div class="pic-list">
+			<ul>
+				<li class="js_gallery" v-for="data in datas" v-cloak onclick="">
+					<div class="pic" data-original="{{data.img_url}}" data-pointid="20007306" style="background-image:url({{data.img_url}}
+);" data-album_id="{{data.album_id}}"></div>
+					<h3>{{data.name}}</h3>
+					<p>{{data.digest}}</p>
+				</li>
+				
+			</ul>
+		</div>
+        <!--幻灯片DOM-->
+            <div class="photos-detail" style="display:none;">
+                <div class="slider-wrap">    
+                    <div class="top">
+                        <div class="left" id="js_slider_back"><i class="left-img"></i></div>
+                        <div class="right">
+                            <span class="right-sp1">1/</span>
+                            <span class="right-sp2">3</span>
+                        </div>
+                    </div>
+                    <div class="foot"></div>
+                </div>
+                
+                <!--点赞 收藏 分享-->
+                <!--点赞 收藏 分享-->
+                <div class="pic-op">
+                    <ul>
+                        <li><i class="tupian zan" data-pointid="20007308" id="js_Praise"></i></li>
+                        <li><i class="tupian fenxiang" id="js_share" data-pointid="20007309"></i></li>
+                    </ul>
+                </div>
+                <div class="mod-share" style="display:none;">
+                    <div class="wrap-share">
+                        <p>分享到</p>
+                        <ul>
+                            <li>
+                                <i class="icon img-one" id="js_shareWxFriends" data-pointid="20007399"></i>
+                                <span>微信好友</span>
+                            </li>
+                            <li>
+                                <i class="icon img-two" id="js_shareWXSocials" data-pointid="20007398"></i>
+                                <span>微信朋友圈</span>
+                            </li>
+                            <li>
+                                <i class="icon img-three" id="js_sharSina" data-pointid="20007395"></i>
+                                <span>新浪微博</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+			</div>
+	</body>
+
+</html>
+<script type="text/javascript" src="./lib/vue.min.js"></script>
+<script type="text/javascript" src="js/beautiful.js"></script>
+<script type="text/javascript">
+    var endTime = new Date().valueOf();
+</script>
+<script type="text/javascript" src="utils/monitor.native.js?pageid=200073"></script>
+<script>
+    YZQ_MONITOR.initMonitor(startTime,endTime);
+    //返回埋点上报
+    function Back_Point_Click (){
+        var pointid = "20007301";
+        YZQ_MONITOR.BackPointClick(pointid);//埋点上报
+    }
+</script>

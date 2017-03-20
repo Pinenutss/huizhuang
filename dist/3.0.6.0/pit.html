@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<script type="text/javascript">
+var startTime = new Date().valueOf();
+</script>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>防坑大全</title>
+        <meta name="keywords" content="业主圈、业主讨论、业主沟通">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <!--分享使用-->
+        <meta itemprop="name" content="装修宝典" />
+        <meta itemprop="description" name="description" content="装修宝典" />
+        <meta itemprop="image" content="img_url" />
+        <meta name="format-detection" content="telephone=no" />
+        <link rel="dns-prefetch" href="//hz.huizhuang.com">
+        <!--DNS预解析-->
+        <!--正式环境 -->
+        <link rel="stylesheet" type="text/css" href="http://hzimg.huizhuang.com/hzone_v2/global.css">
+        <link rel="stylesheet" type="text/css" href="http://hzimg.huizhuang.com/hzone_v2/collection.css" />
+        <link rel="stylesheet" type="text/css" href="http://hzimg.huizhuang.com/hzone_v2/swiper.3.1.7.min.css" />
+        <script src="http://hzimg.huizhuang.com/lib/jquery-2.1.0.min.js"></script>
+        <script src="http://hzimg.huizhuang.com/lib/swiper.3.1.7.jquery.min.js"></script>
+        <script src="./utils/common.js"></script>
+        <script src="./utils/config.js"></script>
+        <script src="./utils/utils.js"></script>
+    </head>
+    <body class="pit">
+        <div class="header">
+            <div class="top-icon swiper-container">
+                <ul class="icon-all swiper-wrapper clearfix">
+                    <li class="swiper-slide">
+                        <i class="xiao-one"></i>
+                        <p class="sp1" data-type="11">售后</p>
+                    </li>
+                    <li class="swiper-slide">
+                        <i class="xiao-two"></i>
+                        <p class="sp1" data-type="4">量房</p>
+                    </li>
+                    <li class="swiper-slide">
+                        <i class="xiao-three"></i>
+                        <p class="sp2" data-type="5">预算</p>
+                    </li>
+                    <li class="swiper-slide">
+                        <i class="xiao-four"></i>
+                        <p class="sp1" data-type="6">合同</p>
+                    </li>
+                    <li class="swiper-slide">
+                        <i class="xiao-five"></i>
+                        <p class="sp1" data-type="7">材料</p>
+                    </li>
+                    <li class="swiper-slide">
+                        <i class="xiao-eight"></i>
+                        <p class="sp1" data-type="8">水电</p>
+                    </li>
+                    <li class="swiper-slide">
+                        <i class="xiao-seven"></i>
+                        <p class="sp1" data-type="9">泥木</p>
+                    </li>
+                    <li class="swiper-slide">
+                        <i class="xiao-six"></i>
+                        <p class="sp1" data-type="10">油漆</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="neirong" id="pit">
+            <ul class="clearfix">
+                <li data-pointid="20007702" v-for="data in datas" class="clearfix" data-id="{{data.id}}" data-title="{{data.title}}"  v-cloak v-on:click="fnShowHandler(data.id,data.title)">
+                    <div class="qingchu">
+                        <div class="prct">
+                            <img v-bind:src="data.img" alt="" />
+                        </div>
+                        <div class="wenzi">
+                            <p v-text="data.title"></p>
+                            <p v-text="data.abstract"></p>
+                            <p><i class="you"></i></p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </body>
+</html>
+<script type="text/javascript" src="./lib/vue.min.js"></script>
+<script type="text/javascript" src="js/pit.js"></script>
+<script type="text/javascript">
+var endTime = new Date().valueOf();
+</script>
+<script type="text/javascript" src="utils/monitor.native.js?pageid=200077"></script>
+<script>
+YZQ_MONITOR.initMonitor(startTime,endTime);
+//返回埋点上报
+function Back_Point_Click (){
+var pointid = "20007701";
+YZQ_MONITOR.BackPointClick(pointid);//埋点上报
+}
+</script>

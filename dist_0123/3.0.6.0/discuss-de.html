@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<script type="text/javascript">
+    var startTime = new Date().valueOf();
+</script>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>业主圈-装修讨论</title>
+		<meta name="keywords" content="业主圈、业主讨论、业主沟通">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<!--分享使用-->
+		<meta itemprop="name" content="业主圈" />
+		<meta itemprop="description" name="description" content="业主圈-装修讨论" />
+		<meta itemprop="image" content="img_url" />
+		<meta name="format-detection" content="telephone=no" />               
+		<link rel="dns-prefetch" href="//hz.huizhuang.com"><!--DNS预解析-->
+
+        <link rel="stylesheet" type="text/css" href="http://hzimg.huizhuang.com/hzone_v2/global.css">
+        <link rel="stylesheet" type="text/css" href="http://hzimg.huizhuang.com/hzone_v2/discuss.css" />
+        <script src="http://imgcache.huizhuang.com/lib/jquery-2.1.0.min.js"></script>
+        <script src="./utils/common.js"></script>
+        <script src="./utils/config.js"></script>
+        <script src="./utils/utils.js"></script>
+	</head>
+	<body class="discuss-de">
+    <div class="mod-cont">
+		<!--楼主 开始-->
+		<div class="host"  v-for="data in datas" v-cloak>
+			<div class="host-info">
+				<i class="head-img" style="background-image:url({{data.user_head_img}});"> <!--头像--> </i>
+				<p class="author">{{data.user_name}}<span>楼主</span></p>
+				<time>{{data.card_add_time}}</time>
+				<button class="follow" style="display: none;"><span class="ico-jia"></span>关注</button>
+				<!--<span class="follow-yet"><span class="ico-right"></span>已关注</span>-->
+			</div>			
+			<h3>{{data.title}}</h3>
+			<p class="content">{{data.content}}</p>
+			 <ul class="pic-list clearfix">
+                            <li data-pointid="9" v-for="data in data.imgs" v-cloak  style="background-image:url({{data.img_url}})"></li>
+            </ul>
+            <div class="host-op">
+            	<div class="zan-list">
+            		<i class="head-img" v-for="data in data.praises" v-cloak style="background-image:url({{data.praise_user_head}})"></i>
+            		<span><b>{{data.praise}}</b>赞</span>
+            	</div>
+            	<div class="{{data.ifpraise}}" data-msgid="{{data.id}}"  id="js_toprprise" data-pointid="3"><span id="js_priseico" class="{{data.ifpraiseico}}"></span><span id="js_priseword">{{data.ifpraiseword}}</span></div>
+            	<!--<div class="dian-zan-yet" style="margin-right:60px;">&lt;!&ndash;style 内敛样式开发请去掉&ndash;&gt;<span class="ico-zan-yet"></span>已赞</div>-->
+            </div>           
+		</div>
+		<!--楼主 结束-->
+		
+		<!--评论列表 开始-->		
+		<div class="comment">
+			<ol class="discuss-list" v-for="data in datalist" v-cloak>
+                <li v-for="reply in data">
+                    <i  class="head-img" style="background-image:url({{reply[0].user_head_img}});"></i>
+                    <div class="list-wrap">
+                        <p class="name">{{reply[0].user_name}}</p>
+                        <p class="content">{{reply[0].content}}</p>
+                        <div class="list-info">
+                            <time>{{reply[0].add_time}}</time>
+
+                            <div class="{{reply[0].divclass}}"   data-pointid="4"><span class="{{reply[0].icon}} userprise" data-userprise="{{reply[0].id}}"></span><span class="prise_num">{{reply[0].praise}}</span></div>
+                            <div class="ping"   data-victorid="{{reply[0].user_id}}" data-replyid ="{{reply[0].id}}" data-victorname="{{reply[0].user_name}}" data-pointid="6"><span class="ico-ping-hot"></span></div>
+                        </div>
+                        <div v-if="reply.length>1" class="replay" >
+                            <span class="ico-jian"></span>
+                            <ul>
+                                <!--<li><b>高升明</b><i class="mark-lou">楼</i><span>：工长怎么样啊？谁能告诉我一下啊，谢谢哈</span></li>-->
+                                <!--<li><b>王大锤</b>回复<b>高升明</b><i class="ico-lou"></i><span>：工长家有喜事，关门三天。</span></li>-->
+                                <li data-pointid="5" v-for=" second in reply" v-if="$index>0" class="js_reply_msg" data-commentid="{{second.id}}" data-victorid="{{second.user_id}}" data-victorname="{{second.user_name}}" data-replyid ="{{reply[0].id}}"><b>{{second.user_name}}</b>回复<b>{{second.reply_name}}</b><i class="ico-lou"></i><span>：{{second.content}}</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+			</ol>
+		</div>
+		<!--评论列表 结束-->
+		</div>
+			<!--回复框 开始-->
+		<div class="op-bot">
+			<div class="wrap-input"><input id="js_replay_content" type="text" data-pointid="7" placeholder="回复楼主："/></div>
+			<button data-pointid="8" id="js_cont_send">发送</button>
+            <button data-pointid="8" id="js_cont_sendto_victior" style="display:none;">发送</button>
+		</div>
+		
+	</div>
+		<!--回复框 结束-->
+	</body>
+</html>
+<script type="text/javascript" src="./lib/vue.min.js"></script>
+<script type="text/javascript" src="js/discuss-de.js"></script>
+<script type="text/javascript">
+    var endTime = new Date().valueOf();
+</script>
+<script src="http://hzimg.huizhuang.com/lib/monitor.native.min.js?appid=200200&apptype=200000&pageid=88&debug=false"></script>
+<!--监控JS结束-->
+<!-- CssGaga 151130103625,adn,334 -->

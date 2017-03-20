@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<script type="text/javascript">
+    var startTime = new Date().valueOf();
+</script>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>文章详情</title>
+    <meta name="keywords" content="业主圈、业主讨论、业主沟通">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!--分享使用-->
+    <meta itemprop="name" content="文章详情" />
+    <meta itemprop="description" name="description" content="文章详情" />
+    <meta itemprop="image" content="img_url" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="dns-prefetch" href="//hz.huizhuang.com">
+    <!--DNS预解析-->
+    <!--正式环境-->
+    <link rel="stylesheet" type="text/css" href="http://imgcache.live.huizhuang.com/hzone_v2/global.css">
+    <link rel="stylesheet" type="text/css" href="http://imgcache.live.huizhuang.com/hzone_v2/diary.css" />
+    
+    <!--测试环境-->
+<!--
+    <link rel="stylesheet" type="text/css" href="http://ued.huizhuang.com/dep/template/hzone_v2/global.css">
+    <link rel="stylesheet" type="text/css" href="http://ued.huizhuang.com/dep/template/hzone_v2/diary.css" />
+-->
+
+    <script src="http://hzimg.huizhuang.com/lib/jquery-2.1.0.min.js"></script>
+
+    <script src="config.live.js"></script>
+    <script src="./utils/common.js"></script>
+    <script src="./utils/config.js"></script>
+    <script src="./utils/utils.js"></script>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body class="articles" id="articles">
+    <div v-for='data in datas' v-cloak>
+        <h1>{{data.title}}</h1>
+        <p class="author">{{data.user_name}}</p>
+        <div class="ar-content">
+            <p>{{{data.content}}}</p>
+        </div>
+    </div>
+    
+    <!--下单底部条-->
+    <div class="bottom-photo">
+        <div class="bottom-font"><p>装修选惠装，比装修公司省40%</p></div>
+        <div class="bottom-btn"><button class="js_booking" data-pointid="20008404">立即预约</button></div>
+    </div>
+    
+</body>
+
+</html>
+<!-- CssGaga 151130153212,adn,334 -->
+<script type="text/javascript" src="http://hzimg.huizhuang.com/lib/vue.min.js"></script>
+<script type="text/javascript" src="js/articles.js"></script>
+<script type="text/javascript">
+    var endTime = new Date().valueOf();
+</script>
+<script type="text/javascript" src="utils/monitor.native.js?pageid=200084"></script>
+<script>
+    //安卓不显示底部下单
+    var plat = YZQ_UTILS.getPlatformMethod();
+    if(plat == 1){
+        $('.bottom-photo').hide();
+    }
+
+    YZQ_MONITOR.initMonitor(startTime,endTime);
+    //返回埋点上报
+    function Back_Point_Click (){
+        var parseurl = YZQ_COMMON.parseURI().params;
+        var pageid = parseurl.pageid;
+        var pointid = 0;
+        if(pageid==200075){
+            pointid =20007502;
+        }if(pageid==200077){
+            pointid =20007701;
+        }if(pageid==200076){
+            pointid =20007601;
+        }
+        YZQ_MONITOR.BackPointClick(pointid);//埋点上报
+    }
+</script>

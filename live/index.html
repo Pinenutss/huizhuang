@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<script type="text/javascript">
+    try{
+        var startTime = new Date().valueOf();
+        var userInfo = JSON.parse(HZ_APP_JSSDK.getUserInfo());
+        var appid = userInfo.appid;
+        if(appid < 2003100){
+            document.location.href = "3.0.6.0/index.html";
+        }
+    }catch (err){
+        console.log(err)
+    }
+
+</script>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>业主圈</title>
+    <meta name="keywords" content="业主圈、业主讨论、业主沟通">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!--分享使用-->
+    <meta itemprop="name" content="业主圈" />
+    <meta itemprop="description" name="description" content="业主圈" />
+    <meta itemprop="image" content="img_url" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="dns-prefetch" href="//hz.huizhuang.com">
+    <!--DNS预解析-->
+    <link rel="stylesheet" href="http://hzimg.huizhuang.com/hzone_v2/swiper.3.1.7.min.css" />
+    <link rel="stylesheet" type="text/css" href="http://imgcache.rls.huizhuang.com/hzone_v2/dist/global.css">
+    <link rel="stylesheet" href="http://imgcache.rls.huizhuang.com/hzone_v2/dist/index_v2.css">
+    <!---插件JS文件不编译,直接引用-->
+    <script src="http://hzimg.huizhuang.com/lib/jquery-2.1.0.min.js"></script>
+    <script src="http://hzimg.huizhuang.com/lib/swiper.3.1.7.jquery.min.js"></script>
+    <script src="http://hzimg.huizhuang.com/lib/vue.min.js"></script>
+    <script src="http://hzimg.huizhuang.com/lib/dropload.min.js"></script>
+    <script src="config.live.js"></script>
+    <!---插件JS引用结束--注意所有的插件最终地址为hzimg.huizhuang.com>-->
+    <style>
+		[v-cloak] {
+			display: none;
+			}
+		.wrap-top{ width:100%; height:100%; position:absolute; z-index:10; top:0; left:0; background:#fff; text-align:center; line-height:400px;}
+    </style>
+</head>
+<body>
+	<div class="wrap-top">亲，正在努力加载中...</div>
+    
+    <!--幻灯片-->
+    <section class="swiper-container">
+        <div class="swiper-wrapper" id="js_banner">
+            <div class="swiper-slide" v-cloak v-for="banner in banners">
+            	<a class="banner-href" data-pointid="{{banner.pointid}}" data-url="{{banner.url}}" data-title="{{banner.ad_name}}" onClick=""><!--v-on:click="bannerClick(banner)"-->
+                	<img v-bind:src="banner.info" />
+                </a>
+            </div>
+        </div>
+        <div class="swiper-pagination"></div>
+    </section>
+    <!--幻灯片结束-->
+    
+    <nav class="nav">
+    	<a data-page="beautiful.html" data-title="装修美图">装修美图</a>
+    	<a data-page="diary.html" data-title="装修日记">装修日记</a>
+    	<a data-page="reputation.html" data-title="业主口碑">业主口碑</a>
+    	<a data-page="people.html" data-title="业主案例">业主案例</a>
+	</nav>
+    
+    <!--置顶帖子-->
+    <ul class="list" id="js_stickposts">
+        <li v-cloak v-for="stickPost in stickPosts" v-on:click="stickPostsClick(stickPost)" data-pointid="20005646">
+            <a href="javascript:;">
+            	<span class="card-type1">置顶</span>
+            	{{stickPost.title}}
+            </a>
+        </li>
+    </ul>
+    <!--置顶帖子结束-->
+    
+    <!--最新话题-->
+	<h1 class="caption"><i></i>最新话题</h1>
+    <ul class="topic" id="js_posts">
+        <li v-cloak v-for="post in posts">
+            <div class="author" v-on:click="postsName(post)" data-pointid="20005645">
+            	<i class="head-img" v-bind:style="{background:'url('+post.head_img+') no-repeat 0 0/100% 100%'}">
+                    <i v-if="post.userVip == 1" class="rz"></i>
+                    <i v-if="post.userVip == 2" class="admin"></i>
+                </i>
+                {{post.nick_name}}
+                <i v-if="post.sex == 2" class="xingbie-nv"></i>
+                <i v-else class="xingbie-nan"></i>
+            </div>
+            <div v-on:click="postsContent(post)" data-pointid="20005646">
+                <div class="topic-content">
+                    <span v-if="post.card_type == 5" class="card-type5">荐</span>
+                    <span v-if="post.card_type == 4" class="card-type4">热</span>
+                    <span v-if="post.card_type == 3" class="card-type3">精</span>
+                    <span v-if="post.card_type == 2" class="card-type2">已回复</span>
+                    <span v-if="post.card_type == 1" class="card-type1">置顶</span>
+                    {{post.title}}
+                </div>
+                <ul class="pic-list">
+                    <li v-for="img in post.imgs" v-bind:style="{background:'url('+img.img_url+')no-repeat 0 0/100% 100%'}"></li>
+                </ul>
+                <div class="other">
+                    <!--<a href="#" class="budget"><i></i>设计预算</a>-->
+                    <span class="date">{{post.time}}</span>
+                    <p class="ping"><span class="ico-ping"></span>{{post.discuss_number}}</p>
+                </div>
+            </div> 
+        </li>
+    </ul>
+    <!--最新话题结束-->
+    
+    <!-- build:common -->
+	<script src="utils/config.js"></script>
+    <script src="utils/common.js"></script>
+    <script src="utils/utils.js"></script>
+    <script type="text/javascript" src="js/index_v2.js"></script>
+    <!-- endbuild -->
+</body>
+</html>
+<script type="text/javascript">
+    var endTime = new Date().valueOf();
+</script>
+<script type="text/javascript" src="utils/monitor.native_v2.js?&pageid=200056"></script>
+<script>
+    YZQ_MONITOR.initMonitor(startTime,endTime);
+	 //发帖埋点上报
+    function Right_Point_Click(){
+        var pointid = "20005644";
+        YZQ_MONITOR.BackPointClick(pointid);//埋点上报
+    }
+</script>
